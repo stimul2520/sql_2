@@ -70,7 +70,7 @@ where f.length > (select avg(f.length) from film f)
 ```python
 select sum(p.amount) as 'Сумма платежей', COUNT(rental_id) as 'Количество аренд', DATE_FORMAT(p.payment_date, '%Y %M' ) as 'Год и Месяц'
 from payment p
-group by DATE_FORMAT(p.payment_date, '%Y %M' ) as 'Год и Месяц'
+group by DATE_FORMAT(p.payment_date, '%Y %M')
 order by sum(p.amount) desc
 limit 1
 ;
