@@ -68,14 +68,14 @@ where f.length > (select avg(f.length) from film f)
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
 
 ```python
-select sum(p.amount) as 'Сумма платежей', COUNT(rental_id) as 'Количество аренд', MONTH(p.payment_date ) as 'Месяц'
-from payment p 
-group by MONTH(p.payment_date )
+select sum(p.amount) as 'Сумма платежей', COUNT(rental_id) as 'Количество аренд', DATE_FORMAT(p.payment_date, '%Y %M' ) as 'Год и Месяц'
+from payment p
+group by DATE_FORMAT(p.payment_date, '%Y %M' ) as 'Год и Месяц'
 order by sum(p.amount) desc
-limit 1 
+limit 1
 ;
 ```
 
-![3](img/3sq.png)
+![3](img/3sq3.png)
 
 ---
